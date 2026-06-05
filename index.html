@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPF-LLM 2026 — Security & Privacy Foundations for LLMs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neurips-purple: #6B5FCF;
+    --neurips-purple-dark: #4A3FA8;
+    --neurips-purple-light: #EAE8FB;
+    --neurips-purple-mid: #9B91E0;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-dark: #0F6E56;
+    --text-primary: #1A1A2E;
+    --text-secondary: #4A4A6A;
+    --text-muted: #8080A0;
+    --bg-white: #FFFFFF;
+    --bg-light: #F7F6FE;
+    --bg-card: #FFFFFF;
+    --border: rgba(107, 95, 207, 0.15);
+    --border-strong: rgba(107, 95, 207, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-white);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    gap: 2rem;
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--neurips-purple);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover {
+    background: var(--neurips-purple-light);
+    color: var(--neurips-purple-dark);
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0E0A2B 0%, #1A1060 40%, #2D1B8C 70%, #3D2AAD 100%);
+    color: white;
+    padding: 6rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(107,95,207,0.4) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(29,158,117,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 60% 80%, rgba(155,145,224,0.2) 0%, transparent 35%);
+  }
+  /* grid dots pattern */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(29,158,117,0.2);
+    border: 1px solid rgba(29,158,117,0.4);
+    color: #5DCAA5;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: #1D9E75;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span {
+    color: #9B91E0;
+    font-style: italic;
+  }
+  .hero-acronym {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.12em;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 680px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-meta-item .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .hero-meta-item .value {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+  .hero-meta-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+    align-self: stretch;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  section:nth-child(even) { background: var(--bg-light); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--neurips-purple);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+  .section-body {
+    color: var(--text-secondary);
+    font-size: 16px;
+    max-width: 780px;
+    line-height: 1.8;
+  }
+  .section-body + .section-body { margin-top: 1rem; }
+
+  /* OVERVIEW */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .topic-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .topic-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .topic-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .topic-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+  .topic-card p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* DATES */
+  .dates-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 15px;
+  }
+  .dates-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+  .dates-table tr:last-child { border-bottom: none; }
+  .dates-table td {
+    padding: 1rem 0;
+    vertical-align: top;
+  }
+  .dates-table td:first-child {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    width: 140px;
+    padding-right: 2rem;
+    padding-top: 1.1rem;
+  }
+  .dates-table td:last-child {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .dates-table .tbd {
+    display: inline-block;
+    background: var(--neurips-purple-light);
+    color: var(--neurips-purple);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 100px;
+    vertical-align: middle;
+    margin-left: 8px;
+    font-family: 'DM Mono', monospace;
+  }
+  .dates-table .highlight td { color: var(--neurips-purple); }
+  .dates-table .highlight td:last-child { color: var(--neurips-purple-dark); }
+
+  /* SCHEDULE */
+  .schedule-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .schedule-item:last-child { border-bottom: none; }
+  .schedule-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    padding-top: 3px;
+  }
+  .schedule-event strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .schedule-event span {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .schedule-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-right: 6px;
+    vertical-align: middle;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .tag-keynote { background: #EAE8FB; color: var(--neurips-purple-dark); }
+  .tag-paper { background: var(--teal-light); color: var(--teal-dark); }
+  .tag-panel { background: #FFF3CD; color: #7A5C00; }
+  .tag-break { background: #F1EFE8; color: #5F5E5A; }
+  .tag-tbd { background: #F1EFE8; color: #888780; }
+
+  /* SPEAKERS */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .speaker-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .speaker-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .speaker-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--neurips-purple-light);
+    color: var(--neurips-purple-dark);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    border: 2px solid var(--border-strong);
+  }
+  .speaker-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+  .speaker-card .affil {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .speaker-card .role-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+  }
+  .role-keynote { background: var(--neurips-purple-light); color: var(--neurips-purple-dark); }
+  .role-panelist { background: var(--teal-light); color: var(--teal-dark); }
+  .role-tba { background: #F1EFE8; color: #888; }
+  .speaker-expertise {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* ORGANIZERS */
+  .organizers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .organizer-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .organizer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--neurips-purple-light);
+    color: var(--neurips-purple-dark);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1.5px solid var(--border-strong);
+  }
+  .organizer-info h3 {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .organizer-info .org-affil {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .organizer-info .org-expertise {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* CFP */
+  .cfp-box {
+    background: var(--neurips-purple-light);
+    border: 1px solid rgba(107,95,207,0.25);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+  .cfp-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--neurips-purple-dark);
+    margin-bottom: 0.75rem;
+  }
+  .cfp-box p {
+    color: #3D3580;
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .cfp-topics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.5rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .cfp-topic {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    color: #3D3580;
+    line-height: 1.5;
+  }
+  .cfp-topic::before {
+    content: '→';
+    color: var(--neurips-purple);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--neurips-purple);
+    color: white;
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--neurips-purple);
+    color: var(--neurips-purple);
+  }
+  .submission-formats {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .format-pill {
+    background: white;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-size: 13.5px;
+    color: var(--neurips-purple-dark);
+  }
+  .format-pill strong { display: block; font-size: 14px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .contact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .contact-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 0.5rem;
+  }
+  .contact-card a {
+    color: var(--neurips-purple);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    word-break: break-all;
+  }
+  .contact-card a:hover { text-decoration: underline; }
+  .contact-card p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0E0A2B;
+    color: rgba(255,255,255,0.55);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    font-size: 13.5px;
+  }
+  footer a { color: var(--neurips-purple-mid); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer .footer-inner { max-width: 1100px; margin: 0 auto; }
+  footer .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 1.5rem;
+  }
+  footer .footer-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 4rem 1.25rem 3.5rem; }
+    .schedule-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .schedule-time { padding-top: 0; font-size: 11px; }
+    footer .footer-top { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">SPF-LLM @ NeurIPS 2026</a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#cfp">Call for Papers</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#organizers">Organizers</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-badge">NeurIPS 2026 Workshop</div>
+    <p class="hero-acronym">SPF-LLM</p>
+    <h1>Security &amp; Privacy <span>Foundations</span><br>for Large Language Models</h1>
+    <p class="hero-desc">
+      A full-day workshop bringing together researchers, practitioners, and policymakers to advance the science of building LLMs that are safe, private, and robust — from training-time risks to deployment-time attacks and defenses.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Conference</span>
+        <span class="value">NeurIPS 2026</span>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <span class="label">Date</span>
+        <span class="value">TBD</span>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <span class="label">Location</span>
+        <span class="value">TBD</span>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <span class="label">Format</span>
+        <span class="value">In-Person + Virtual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-inner">
+    <p class="section-label">About the Workshop</p>
+    <h2 class="section-title">Why SPF-LLM?</h2>
+    <p class="section-body">
+      Large language models are increasingly deployed in high-stakes settings — healthcare, law, finance, national security — yet fundamental questions about their security and privacy properties remain underexplored. Attacks can manipulate outputs through jailbreaks, prompt injection, and adversarial inputs; training pipelines can be poisoned; private data can be extracted through memorization and inference attacks.
+    </p>
+    <p class="section-body">
+      SPF-LLM creates a dedicated venue for work that rigorously examines these failure modes and proposes theoretically grounded, empirically validated defenses. We welcome work spanning the full LLM lifecycle — from pretraining and fine-tuning to inference, deployment, and monitoring.
+    </p>
+
+    <div class="overview-grid">
+      <div class="topic-card">
+        <div class="topic-icon">🔐</div>
+        <h3>Jailbreaks &amp; Adversarial Attacks</h3>
+        <p>Semantic, syntactic, and mathematical encoding attacks that bypass safety alignment; detection and defense methods.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🛡️</div>
+        <h3>Privacy &amp; Memorization</h3>
+        <p>Membership inference, training data extraction, differential privacy in LLMs, and federated learning.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">☠️</div>
+        <h3>Supply Chain &amp; Poisoning</h3>
+        <p>Data poisoning, model tampering, backdoor attacks, and AI supply chain integrity.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🤖</div>
+        <h3>Agentic &amp; Multi-Agent Security</h3>
+        <p>Safety risks in agentic pipelines, tool-use hijacking, orchestration vulnerabilities, and multi-agent trust.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">⚖️</div>
+        <h3>Evaluation &amp; Benchmarking</h3>
+        <p>Benchmarks for safety, red-teaming methodologies, automated evaluation, and LLM-as-judge reliability.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">📋</div>
+        <h3>Regulation &amp; Governance</h3>
+        <p>Policy frameworks, compliance mechanisms, auditing standards, and responsible disclosure for LLMs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPORTANT DATES -->
+<section id="dates">
+  <div class="section-inner">
+    <p class="section-label">Key Deadlines</p>
+    <h2 class="section-title">Important Dates</h2>
+    <p class="section-body">All deadlines are 11:59 PM AoE (Anywhere on Earth). Dates subject to change — check back for updates.</p>
+    <table class="dates-table">
+      <tr>
+        <td>TBD</td>
+        <td>Paper submission deadline <span class="tbd">TBD</span></td>
+      </tr>
+      <tr>
+        <td>TBD</td>
+        <td>Notification of acceptance <span class="tbd">TBD</span></td>
+      </tr>
+      <tr>
+        <td>TBD</td>
+        <td>Camera-ready deadline <span class="tbd">TBD</span></td>
+      </tr>
+      <tr>
+        <td>TBD</td>
+        <td>Workshop day <span class="tbd">TBD</span></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- CALL FOR PAPERS -->
+<section id="cfp">
+  <div class="section-inner">
+    <p class="section-label">Submissions</p>
+    <h2 class="section-title">Call for Papers</h2>
+    <p class="section-body">
+      We invite submissions on all aspects of security and privacy for large language models. We especially encourage work that bridges theory and practice, introduces new benchmarks or datasets, or proposes novel evaluation frameworks.
+    </p>
+
+    <div class="cfp-box">
+      <h3>Topics of Interest</h3>
+      <p>Submissions may address (but are not limited to) the following areas:</p>
+      <div class="cfp-topics">
+        <div class="cfp-topic">Jailbreak attacks and detection methods</div>
+        <div class="cfp-topic">Prompt injection and indirect prompt injection</div>
+        <div class="cfp-topic">Adversarial robustness of LLMs</div>
+        <div class="cfp-topic">Privacy attacks: membership inference, data extraction</div>
+        <div class="cfp-topic">Differential privacy and federated LLM training</div>
+        <div class="cfp-topic">Data and model poisoning / backdoor attacks</div>
+        <div class="cfp-topic">AI supply chain integrity</div>
+        <div class="cfp-topic">Agentic and multi-agent security</div>
+        <div class="cfp-topic">Red-teaming methodologies and tools</div>
+        <div class="cfp-topic">LLM evaluation and safety benchmarking</div>
+        <div class="cfp-topic">Watermarking and provenance of LLM outputs</div>
+        <div class="cfp-topic">Governance, auditing, and regulatory compliance</div>
+      </div>
+
+      <h3 style="margin-top: 1.5rem;">Submission Formats</h3>
+      <div class="submission-formats">
+        <div class="format-pill">
+          <strong>Regular Papers</strong>
+          Up to 8 pages (excl. references)
+        </div>
+        <div class="format-pill">
+          <strong>Short Papers</strong>
+          Up to 4 pages (excl. references)
+        </div>
+        <div class="format-pill">
+          <strong>Position Papers</strong>
+          Up to 4 pages (excl. references)
+        </div>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 14px;">
+        All submissions must follow the NeurIPS 2026 format. Submissions are double-blind. Previously published work and work under concurrent review are not eligible. Accepted papers will be posted on the workshop website (non-archival).
+      </p>
+
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#" class="btn btn-primary">Submit on OpenReview ↗</a>
+        <a href="#" class="btn btn-outline">LaTeX Template ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-inner">
+    <p class="section-label">Program</p>
+    <h2 class="section-title">Workshop Schedule</h2>
+    <p class="section-body">The full schedule will be announced after notifications. The following is a tentative structure.</p>
+
+    <div class="schedule-list">
+      <div class="schedule-item">
+        <div class="schedule-time">09:00 – 09:15</div>
+        <div class="schedule-event">
+          <strong>Opening remarks</strong>
+          <span>Workshop introduction and overview from the organizing committee</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">09:15 – 10:00</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-keynote">Keynote</span> Invited Talk 1</strong>
+          <span>Speaker TBA</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">10:00 – 10:45</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-paper">Papers</span> Paper Session 1 — Attacks</strong>
+          <span>Contributed paper presentations</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">10:45 – 11:00</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-break">Break</span> Coffee Break</strong>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:00 – 11:45</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-keynote">Keynote</span> Invited Talk 2</strong>
+          <span>Speaker TBA</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:45 – 12:30</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-paper">Papers</span> Paper Session 2 — Defenses &amp; Privacy</strong>
+          <span>Contributed paper presentations</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:30 – 14:00</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-break">Break</span> Lunch Break + Poster Session</strong>
+          <span>Accepted papers presented as posters</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:00 – 14:45</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-keynote">Keynote</span> Invited Talk 3</strong>
+          <span>Speaker TBA</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:45 – 15:30</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-paper">Papers</span> Paper Session 3 — Evaluation &amp; Governance</strong>
+          <span>Contributed paper presentations</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">15:30 – 15:45</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-break">Break</span> Coffee Break</strong>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">15:45 – 17:00</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-panel">Panel</span> Panel Discussion</strong>
+          <span>Open research challenges in LLM security &amp; privacy — panelists TBA</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">17:00 – 17:15</div>
+        <div class="schedule-event">
+          <strong>Closing remarks &amp; awards</strong>
+          <span>Best paper announcement and workshop wrap-up</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVITED SPEAKERS -->
+<section id="speakers">
+  <div class="section-inner">
+    <p class="section-label">Invited Speakers</p>
+    <h2 class="section-title">Keynote &amp; Panel Speakers</h2>
+    <p class="section-body">We are in the process of confirming invited speakers. Announcements coming soon.</p>
+
+    <div class="speakers-grid">
+      <div class="speaker-card">
+        <div class="speaker-avatar">?</div>
+        <h3>Keynote Speaker</h3>
+        <p class="affil">To be announced</p>
+        <span class="role-badge role-keynote">Keynote</span>
+        <p class="speaker-expertise">Topic: TBA</p>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">?</div>
+        <h3>Keynote Speaker</h3>
+        <p class="affil">To be announced</p>
+        <span class="role-badge role-keynote">Keynote</span>
+        <p class="speaker-expertise">Topic: TBA</p>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">?</div>
+        <h3>Keynote Speaker</h3>
+        <p class="affil">To be announced</p>
+        <span class="role-badge role-keynote">Keynote</span>
+        <p class="speaker-expertise">Topic: TBA</p>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">?</div>
+        <h3>Panelist</h3>
+        <p class="affil">To be announced</p>
+        <span class="role-badge role-panelist">Panelist</span>
+        <p class="speaker-expertise">Topic: TBA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZERS -->
+<section id="organizers">
+  <div class="section-inner">
+    <p class="section-label">Organizing Committee</p>
+    <h2 class="section-title">Workshop Organizers</h2>
+
+    <div class="organizers-grid">
+      <div class="organizer-card">
+        <div class="organizer-avatar">SS</div>
+        <div class="organizer-info">
+          <h3>Dr. Shanu Sushmita</h3>
+          <p class="org-affil">Associate Professor, Northeastern University (Seattle)<br>Affiliate AP, University of Washington</p>
+          <p class="org-expertise">LLM safety, jailbreak detection, adversarial robustness, AI evaluation</p>
+        </div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-avatar">MD</div>
+        <div class="organizer-info">
+          <h3>Dr. Martine De Cock</h3>
+          <p class="org-affil">University of Washington Tacoma</p>
+          <p class="org-expertise">Privacy-preserving ML, federated learning, trustworthy AI</p>
+        </div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-avatar">MP</div>
+        <div class="organizer-info">
+          <h3>Dr. Mayana Pereira</h3>
+          <p class="org-affil">Capital One AI Research</p>
+          <p class="org-expertise">Privacy in ML, differential privacy, responsible AI</p>
+        </div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-avatar">MZ</div>
+        <div class="organizer-info">
+          <h3>Dr. Mohammad Zandsalimy</h3>
+          <p class="org-affil">Synopsys</p>
+          <p class="org-expertise">AI security, adversarial ML, HPC/CFD-integrated AI safety</p>
+        </div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-avatar">GS</div>
+        <div class="organizer-info">
+          <h3>Dr. Giorgio Severi</h3>
+          <p class="org-affil">Microsoft</p>
+          <p class="org-expertise">ML security, poisoning attacks, model robustness</p>
+        </div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-avatar">EA</div>
+        <div class="organizer-info">
+          <h3>Dr. Ehsan Aghaei</h3>
+          <p class="org-affil">Cisco AI Defense</p>
+          <p class="org-expertise">LLM safety evaluation, AI supply chain integrity, agentic reasoning pipelines</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Contact &amp; Social</h2>
+    <p class="section-body">Have questions about the workshop, submissions, or sponsorship? Reach out to the organizing committee.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>General Inquiries</h3>
+        <a href="mailto:spf-llm-workshop@gmail.com">spf-llm-workshop@gmail.com</a>
+        <p>Questions about the workshop, logistics, or accessibility</p>
+      </div>
+      <div class="contact-card">
+        <h3>Submission Questions</h3>
+        <a href="mailto:spf-llm-workshop@gmail.com">spf-llm-workshop@gmail.com</a>
+        <p>Questions about paper submission, formatting, or eligibility</p>
+      </div>
+      <div class="contact-card">
+        <h3>OpenReview</h3>
+        <a href="#">Submission Portal ↗</a>
+        <p>Submit your paper via OpenReview (link active when CFP opens)</p>
+      </div>
+      <div class="contact-card">
+        <h3>NeurIPS 2026</h3>
+        <a href="https://neurips.cc" target="_blank" rel="noopener">neurips.cc ↗</a>
+        <p>Conference registration, travel, and general information</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <span class="footer-logo">SPF-LLM @ NeurIPS 2026</span>
+      <nav style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="#overview">Overview</a>
+        <a href="#dates">Dates</a>
+        <a href="#cfp">CFP</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#organizers">Organizers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <p>
+      Security &amp; Privacy Foundations for LLMs Workshop · NeurIPS 2026 ·
+      Contact: <a href="mailto:spf-llm-workshop@gmail.com">spf-llm-workshop@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
