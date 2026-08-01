@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPF-LLM 2026 — Security & Privacy Foundations for LLMs</title>
+<title>SPF-LLM 2027 — Security & Privacy Foundations for LLMs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -102,7 +102,6 @@
       radial-gradient(circle at 80% 20%, rgba(29,158,117,0.25) 0%, transparent 40%),
       radial-gradient(circle at 60% 80%, rgba(155,145,224,0.2) 0%, transparent 35%);
   }
-  /* grid dots pattern */
   .hero::after {
     content: '';
     position: absolute;
@@ -149,21 +148,22 @@
     line-height: 1.15;
     margin-bottom: 0.75rem;
     letter-spacing: -0.01em;
+    color: #1A1A2E;
   }
   .hero h1 span {
-    color: #9B91E0;
+    color: var(--neurips-purple-dark);
     font-style: italic;
   }
   .hero-acronym {
     font-family: 'DM Mono', monospace;
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    color: rgba(255,255,255,0.55);
+    color: rgba(0,0,0,0.45);
     margin-bottom: 1.5rem;
     letter-spacing: 0.12em;
   }
   .hero-desc {
     font-size: 1.05rem;
-    color: rgba(255,255,255,0.75);
+    color: #2A2A3E;
     max-width: 680px;
     line-height: 1.75;
     margin-bottom: 2.5rem;
@@ -183,16 +183,16 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.4);
   }
   .hero-meta-item .value {
     font-size: 15px;
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: #1A1A2E;
   }
   .hero-meta-divider {
     width: 1px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.15);
     align-self: stretch;
   }
 
@@ -278,7 +278,7 @@
     color: var(--text-muted);
     font-size: 13px;
     font-family: 'DM Mono', monospace;
-    width: 140px;
+    width: 160px;
     padding-right: 2rem;
     padding-top: 1.1rem;
   }
@@ -286,20 +286,7 @@
     font-weight: 500;
     color: var(--text-primary);
   }
-  .dates-table .tbd {
-    display: inline-block;
-    background: var(--neurips-purple-light);
-    color: var(--neurips-purple);
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 100px;
-    vertical-align: middle;
-    margin-left: 8px;
-    font-family: 'DM Mono', monospace;
-  }
-  .dates-table .highlight td { color: var(--neurips-purple); }
-  .dates-table .highlight td:last-child { color: var(--neurips-purple-dark); }
+  .dates-table .highlight td:last-child { color: var(--neurips-purple-dark); font-weight: 600; }
 
   /* SCHEDULE */
   .schedule-list {
@@ -349,7 +336,6 @@
   .tag-paper { background: var(--teal-light); color: var(--teal-dark); }
   .tag-panel { background: #FFF3CD; color: #7A5C00; }
   .tag-break { background: #F1EFE8; color: #5F5E5A; }
-  .tag-tbd { background: #F1EFE8; color: #888780; }
 
   /* SPEAKERS */
   .speakers-grid {
@@ -412,6 +398,12 @@
     margin-top: 8px;
     font-style: italic;
     line-height: 1.4;
+  }
+  .speaker-status-tentative {
+    font-size: 11px;
+    color: #A07020;
+    font-family: 'DM Mono', monospace;
+    margin-top: 6px;
   }
 
   /* ORGANIZERS */
@@ -517,10 +509,7 @@
     border: none;
   }
   .btn:hover { opacity: 0.85; transform: translateY(-1px); }
-  .btn-primary {
-    background: var(--neurips-purple);
-    color: white;
-  }
+  .btn-primary { background: var(--neurips-purple); color: white; }
   .btn-outline {
     background: transparent;
     border: 1.5px solid var(--neurips-purple);
@@ -623,7 +612,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="nav-logo">SPF-LLM @ NeurIPS 2026</a>
+    <a href="#top" class="nav-logo">SPF-LLM @ AAAI-27</a>
     <ul class="nav-links">
       <li><a href="#overview">Overview</a></li>
       <li><a href="#dates">Dates</a></li>
@@ -639,31 +628,31 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-inner">
-    <div class="hero-badge">NeurIPS 2026 Workshop</div>
+    <div class="hero-badge">AAAI-27 Workshop</div>
     <p class="hero-acronym">SPF-LLM</p>
     <h1>Security &amp; Privacy <span>Foundations</span><br>for Large Language Models</h1>
     <p class="hero-desc">
-      A full-day workshop bringing together researchers, practitioners, and policymakers to advance the science of building LLMs that are safe, private, and robust — from training-time risks to deployment-time attacks and defenses.
+      A full-day workshop bringing together NLP researchers, security and privacy researchers, and production practitioners to advance the science of building LLMs that are safe, private, and robust — from training-time risks to agentic deployment attacks and defenses.
     </p>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <span class="label">Conference</span>
-        <span class="value">NeurIPS 2026</span>
+        <span class="value">AAAI-27</span>
       </div>
       <div class="hero-meta-divider"></div>
       <div class="hero-meta-item">
         <span class="label">Date</span>
-        <span class="value">TBD</span>
+        <span class="value">Feb 22–23, 2027</span>
       </div>
       <div class="hero-meta-divider"></div>
       <div class="hero-meta-item">
         <span class="label">Location</span>
-        <span class="value">TBD</span>
+        <span class="value">Montréal, Canada</span>
       </div>
       <div class="hero-meta-divider"></div>
       <div class="hero-meta-item">
         <span class="label">Format</span>
-        <span class="value">In-Person + Virtual</span>
+        <span class="value">In-Person</span>
       </div>
     </div>
   </div>
@@ -675,42 +664,42 @@
     <p class="section-label">About the Workshop</p>
     <h2 class="section-title">Why SPF-LLM?</h2>
     <p class="section-body">
-      Large language models are increasingly deployed in high-stakes settings — healthcare, law, finance, national security — yet fundamental questions about their security and privacy properties remain underexplored. Attacks can manipulate outputs through jailbreaks, prompt injection, and adversarial inputs; training pipelines can be poisoned; private data can be extracted through memorization and inference attacks.
+      Language models are rapidly becoming autonomous agents — orchestrating APIs, calling tools, executing multi-step plans, and collaborating with other models. This shift fundamentally changes their risk profile. Threats now span reasoning chains, tool interfaces, retrieval-augmented pipelines, and inter-agent communication, creating layered attack and privacy surfaces that no existing defense addresses comprehensively.
     </p>
     <p class="section-body">
-      SPF-LLM creates a dedicated venue for work that rigorously examines these failure modes and proposes theoretically grounded, empirically validated defenses. We welcome work spanning the full LLM lifecycle — from pretraining and fine-tuning to inference, deployment, and monitoring.
+      SPF-LLM creates a dedicated venue connecting three under-integrated communities: NLP/LLM researchers, security and privacy researchers, and production practitioners. We examine how model architecture, training, context handling, tool use, and multi-agent coordination create novel vulnerabilities — and how rigorous empirical and theoretical methods from NLP and security can close these gaps.
     </p>
 
     <div class="overview-grid">
       <div class="topic-card">
-        <div class="topic-icon">🔐</div>
-        <h3>Jailbreaks &amp; Adversarial Attacks</h3>
-        <p>Semantic, syntactic, and mathematical encoding attacks that bypass safety alignment; detection and defense methods.</p>
+        <div class="topic-icon">🎯</div>
+        <h3>Attacks &amp; Threat Models</h3>
+        <p>Indirect prompt injection against RAG and tool-augmented LLMs; multi-agent jailbreaking; privilege escalation via tool misuse; encoding-based attacks.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🔒</div>
+        <h3>Privacy in LLM Workflows</h3>
+        <p>Contextual integrity in agentic systems; membership inference; differential privacy and federated learning in LLM pipelines; AI supply chain integrity.</p>
       </div>
       <div class="topic-card">
         <div class="topic-icon">🛡️</div>
-        <h3>Privacy &amp; Memorization</h3>
-        <p>Membership inference, training data extraction, differential privacy in LLMs, and federated learning.</p>
+        <h3>Defenses &amp; Alignment</h3>
+        <p>Runtime monitoring of LLM reasoning and tool calls; alignment filtering resilient to multi-turn attacks; secure-by-design agentic architectures; formal verification.</p>
       </div>
       <div class="topic-card">
-        <div class="topic-icon">☠️</div>
-        <h3>Supply Chain &amp; Poisoning</h3>
-        <p>Data poisoning, model tampering, backdoor attacks, and AI supply chain integrity.</p>
+        <div class="topic-icon">📊</div>
+        <h3>Evaluation &amp; Benchmarking</h3>
+        <p>Red-teaming methodologies for agentic LLMs; benchmarks for jailbreaking, tool misuse, and privacy leakage; interpretability and auditing tools.</p>
       </div>
       <div class="topic-card">
         <div class="topic-icon">🤖</div>
         <h3>Agentic &amp; Multi-Agent Security</h3>
-        <p>Safety risks in agentic pipelines, tool-use hijacking, orchestration vulnerabilities, and multi-agent trust.</p>
-      </div>
-      <div class="topic-card">
-        <div class="topic-icon">⚖️</div>
-        <h3>Evaluation &amp; Benchmarking</h3>
-        <p>Benchmarks for safety, red-teaming methodologies, automated evaluation, and LLM-as-judge reliability.</p>
+        <p>Safety risks in agentic pipelines, tool-use hijacking, orchestration vulnerabilities, goal subversion, and multi-agent trust.</p>
       </div>
       <div class="topic-card">
         <div class="topic-icon">📋</div>
-        <h3>Regulation &amp; Governance</h3>
-        <p>Policy frameworks, compliance mechanisms, auditing standards, and responsible disclosure for LLMs.</p>
+        <h3>Governance &amp; Responsible Deployment</h3>
+        <p>Accountability frameworks; human oversight in agentic pipelines; legal and ethical considerations; responsible disclosure for LLM systems.</p>
       </div>
     </div>
   </div>
@@ -721,23 +710,35 @@
   <div class="section-inner">
     <p class="section-label">Key Deadlines</p>
     <h2 class="section-title">Important Dates</h2>
-    <p class="section-body">All deadlines are 11:59 PM AoE (Anywhere on Earth). Dates subject to change — check back for updates.</p>
+    <p class="section-body">All deadlines are per the official AAAI-27 workshop calendar. Dates subject to change — check back for updates.</p>
     <table class="dates-table">
       <tr>
-        <td>TBD</td>
-        <td>Paper submission deadline <span class="tbd">TBD</span></td>
+        <td>Aug 3, 2026</td>
+        <td>Workshop proposal submission site opens</td>
       </tr>
       <tr>
-        <td>TBD</td>
-        <td>Notification of acceptance <span class="tbd">TBD</span></td>
+        <td>Aug 28, 2026</td>
+        <td>Workshop proposals due</td>
       </tr>
       <tr>
-        <td>TBD</td>
-        <td>Camera-ready deadline <span class="tbd">TBD</span></td>
+        <td>Sep 25, 2026</td>
+        <td>Decisions sent to organizers</td>
       </tr>
       <tr>
-        <td>TBD</td>
-        <td>Workshop day <span class="tbd">TBD</span></td>
+        <td>Oct 2, 2026</td>
+        <td>Workshop CFP due to AAAI</td>
+      </tr>
+      <tr class="highlight">
+        <td>Nov 20, 2026</td>
+        <td>Paper submissions due to organizers</td>
+      </tr>
+      <tr class="highlight">
+        <td>Dec 2, 2026</td>
+        <td>Notifications sent to authors</td>
+      </tr>
+      <tr class="highlight">
+        <td>Feb 22–23, 2027</td>
+        <td>AAAI-27 Workshop Program — Montréal, Canada</td>
       </tr>
     </table>
   </div>
@@ -749,50 +750,46 @@
     <p class="section-label">Submissions</p>
     <h2 class="section-title">Call for Papers</h2>
     <p class="section-body">
-      We invite submissions on all aspects of security and privacy for large language models. We especially encourage work that bridges theory and practice, introduces new benchmarks or datasets, or proposes novel evaluation frameworks.
+      We invite submissions on all aspects of security and privacy for large language models, with particular emphasis on agentic and multi-agent settings. We especially encourage works in progress, negative results, and cross-disciplinary perspectives.
     </p>
 
     <div class="cfp-box">
       <h3>Topics of Interest</h3>
       <p>Submissions may address (but are not limited to) the following areas:</p>
       <div class="cfp-topics">
-        <div class="cfp-topic">Jailbreak attacks and detection methods</div>
-        <div class="cfp-topic">Prompt injection and indirect prompt injection</div>
-        <div class="cfp-topic">Adversarial robustness of LLMs</div>
-        <div class="cfp-topic">Privacy attacks: membership inference, data extraction</div>
-        <div class="cfp-topic">Differential privacy and federated LLM training</div>
-        <div class="cfp-topic">Data and model poisoning / backdoor attacks</div>
-        <div class="cfp-topic">AI supply chain integrity</div>
-        <div class="cfp-topic">Agentic and multi-agent security</div>
-        <div class="cfp-topic">Red-teaming methodologies and tools</div>
-        <div class="cfp-topic">LLM evaluation and safety benchmarking</div>
-        <div class="cfp-topic">Watermarking and provenance of LLM outputs</div>
-        <div class="cfp-topic">Governance, auditing, and regulatory compliance</div>
+        <div class="cfp-topic">Indirect prompt injection against RAG and tool-augmented LLMs</div>
+        <div class="cfp-topic">Multi-agent jailbreaking and goal subversion</div>
+        <div class="cfp-topic">Privilege escalation via tool misuse</div>
+        <div class="cfp-topic">Mathematical and encoding-based jailbreak attacks</div>
+        <div class="cfp-topic">Membership inference and data extraction from agents</div>
+        <div class="cfp-topic">Differential privacy and federated learning in LLM pipelines</div>
+        <div class="cfp-topic">AI supply chain integrity and model provenance</div>
+        <div class="cfp-topic">Runtime monitoring and introspection of LLM tool calls</div>
+        <div class="cfp-topic">Red-teaming methodologies for agentic LLMs</div>
+        <div class="cfp-topic">Benchmarks for jailbreaking, tool misuse, and privacy leakage</div>
+        <div class="cfp-topic">Accountability frameworks for autonomous LLM systems</div>
+        <div class="cfp-topic">Responsible disclosure for LLM vulnerabilities</div>
       </div>
 
-      <h3 style="margin-top: 1.5rem;">Submission Formats</h3>
+      <h3 style="margin-top: 1.5rem;">Submission Tracks</h3>
       <div class="submission-formats">
         <div class="format-pill">
-          <strong>Regular Papers</strong>
-          Up to 8 pages (excl. references)
+          <strong>Full Papers</strong>
+          4 pages + references · Oral presentation
         </div>
         <div class="format-pill">
-          <strong>Short Papers</strong>
-          Up to 4 pages (excl. references)
-        </div>
-        <div class="format-pill">
-          <strong>Position Papers</strong>
-          Up to 4 pages (excl. references)
+          <strong>Works in Progress / Extended Abstracts</strong>
+          1–2 pages · Poster + lightning talk
         </div>
       </div>
 
       <p style="margin-top: 1.5rem; font-size: 14px;">
-        All submissions must follow the NeurIPS 2026 format. Submissions are double-blind. Previously published work and work under concurrent review are not eligible. Accepted papers will be posted on the workshop website (non-archival).
+        All submissions must follow the AAAI 2027 format and are managed via <strong>OpenReview</strong> (single-blind, 2–3 reviews per paper). All accepted papers are <strong>non-archival</strong>; work accepted at the AAAI-27 main track may not appear at the workshop.
       </p>
 
       <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
         <a href="#" class="btn btn-primary">Submit on OpenReview ↗</a>
-        <a href="#" class="btn btn-outline">LaTeX Template ↗</a>
+        <a href="#" class="btn btn-outline">AAAI 2027 Template ↗</a>
       </div>
     </div>
   </div>
@@ -803,89 +800,62 @@
   <div class="section-inner">
     <p class="section-label">Program</p>
     <h2 class="section-title">Workshop Schedule</h2>
-    <p class="section-body">The full schedule will be announced after notifications. The following is a tentative structure.</p>
+    <p class="section-body">The full schedule will be announced after notifications. The following is a tentative structure for the full one-day workshop.</p>
 
     <div class="schedule-list">
       <div class="schedule-item">
-        <div class="schedule-time">09:00 – 09:15</div>
+        <div class="schedule-time">09:00 – 10:00</div>
         <div class="schedule-event">
-          <strong>Opening remarks</strong>
-          <span>Workshop introduction and overview from the organizing committee</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">09:15 – 10:00</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-keynote">Keynote</span> Invited Talk 1</strong>
-          <span>Speaker TBA</span>
+          <strong><span class="schedule-tag tag-keynote">Keynote</span> Opening Remarks &amp; Keynote</strong>
+          <span>Workshop introduction followed by invited keynote talk</span>
         </div>
       </div>
       <div class="schedule-item">
         <div class="schedule-time">10:00 – 10:45</div>
         <div class="schedule-event">
-          <strong><span class="schedule-tag tag-paper">Papers</span> Paper Session 1 — Attacks</strong>
+          <strong><span class="schedule-tag tag-paper">Papers</span> Oral Session 1 — Attacks &amp; Threat Models</strong>
           <span>Contributed paper presentations</span>
         </div>
       </div>
       <div class="schedule-item">
-        <div class="schedule-time">10:45 – 11:00</div>
+        <div class="schedule-time">10:45 – 12:15</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-paper">Papers</span> Oral Session 2 — Privacy in LLM Workflows</strong>
+          <span>Contributed paper presentations (includes short break)</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:15 – 13:30</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-break">Break</span> Lunch &amp; Poster Session</strong>
+          <span>Works-in-Progress track posters and informal discussion</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">13:30 – 14:15</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-panel">Panel</span> Practitioner Panel</strong>
+          <span>Practitioner perspectives on agentic LLM security</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:15 – 15:15</div>
+        <div class="schedule-event">
+          <strong><span class="schedule-tag tag-paper">Papers</span> Oral Session 3 — Defenses &amp; Alignment</strong>
+          <span>Contributed paper presentations</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">15:15 – 15:30</div>
         <div class="schedule-event">
           <strong><span class="schedule-tag tag-break">Break</span> Coffee Break</strong>
         </div>
       </div>
       <div class="schedule-item">
-        <div class="schedule-time">11:00 – 11:45</div>
+        <div class="schedule-time">15:30 – 16:15</div>
         <div class="schedule-event">
-          <strong><span class="schedule-tag tag-keynote">Keynote</span> Invited Talk 2</strong>
-          <span>Speaker TBA</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">11:45 – 12:30</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-paper">Papers</span> Paper Session 2 — Defenses &amp; Privacy</strong>
-          <span>Contributed paper presentations</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">12:30 – 14:00</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-break">Break</span> Lunch Break + Poster Session</strong>
-          <span>Accepted papers presented as posters</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">14:00 – 14:45</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-keynote">Keynote</span> Invited Talk 3</strong>
-          <span>Speaker TBA</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">14:45 – 15:30</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-paper">Papers</span> Paper Session 3 — Evaluation &amp; Governance</strong>
-          <span>Contributed paper presentations</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">15:30 – 15:45</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-break">Break</span> Coffee Break</strong>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">15:45 – 17:00</div>
-        <div class="schedule-event">
-          <strong><span class="schedule-tag tag-panel">Panel</span> Panel Discussion</strong>
-          <span>Open research challenges in LLM security &amp; privacy — panelists TBA</span>
-        </div>
-      </div>
-      <div class="schedule-item">
-        <div class="schedule-time">17:00 – 17:15</div>
-        <div class="schedule-event">
-          <strong>Closing remarks &amp; awards</strong>
-          <span>Best paper announcement and workshop wrap-up</span>
+          <strong>Closing Discussion &amp; Governance Roadmap</strong>
+          <span>Open discussion on research challenges and responsible deployment</span>
         </div>
       </div>
     </div>
@@ -909,16 +879,9 @@
       </div>
       <div class="speaker-card">
         <div class="speaker-avatar">?</div>
-        <h3>Keynote Speaker</h3>
+        <h3>Panelist</h3>
         <p class="affil">To be announced</p>
-        <span class="role-badge role-keynote">Keynote</span>
-        <p class="speaker-expertise">Topic: TBA</p>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-avatar">?</div>
-        <h3>Keynote Speaker</h3>
-        <p class="affil">To be announced</p>
-        <span class="role-badge role-keynote">Keynote</span>
+        <span class="role-badge role-panelist">Panelist</span>
         <p class="speaker-expertise">Topic: TBA</p>
       </div>
       <div class="speaker-card">
@@ -944,7 +907,7 @@
         <div class="organizer-info">
           <h3>Dr. Shanu Sushmita</h3>
           <p class="org-affil">Associate Professor, Northeastern University (Seattle)<br>Affiliate AP, University of Washington</p>
-          <p class="org-expertise">LLM safety, jailbreak detection, adversarial robustness, AI evaluation</p>
+          <p class="org-expertise">LLM safety, jailbreak detection, adversarial robustness, NLP</p>
         </div>
       </div>
       <div class="organizer-card">
@@ -960,23 +923,23 @@
         <div class="organizer-info">
           <h3>Dr. Mayana Pereira</h3>
           <p class="org-affil">Capital One AI Research</p>
-          <p class="org-expertise">Privacy in ML, differential privacy, responsible AI</p>
+          <p class="org-expertise">Differential privacy, federated learning, responsible ML deployment</p>
         </div>
       </div>
       <div class="organizer-card">
         <div class="organizer-avatar">MZ</div>
         <div class="organizer-info">
           <h3>Dr. Mohammad Zandsalimy</h3>
-          <p class="org-affil">Synopsys</p>
-          <p class="org-expertise">AI security, adversarial ML, HPC/CFD-integrated AI safety</p>
+          <p class="org-affil">Synopsys Inc.</p>
+          <p class="org-expertise">Formal verification, AI security, mathematical encoding jailbreak attacks</p>
         </div>
       </div>
       <div class="organizer-card">
         <div class="organizer-avatar">GS</div>
         <div class="organizer-info">
           <h3>Dr. Giorgio Severi</h3>
-          <p class="org-affil">Microsoft</p>
-          <p class="org-expertise">ML security, poisoning attacks, model robustness</p>
+          <p class="org-affil">Microsoft AI Red Team</p>
+          <p class="org-expertise">Adversarial ML, training-time adversarial interference, data poisoning</p>
         </div>
       </div>
       <div class="organizer-card">
@@ -995,29 +958,29 @@
 <section id="contact">
   <div class="section-inner">
     <p class="section-label">Get in Touch</p>
-    <h2 class="section-title">Contact &amp; Social</h2>
-    <p class="section-body">Have questions about the workshop, submissions, or sponsorship? Reach out to the organizing committee.</p>
+    <h2 class="section-title">Contact &amp; Information</h2>
+    <p class="section-body">Have questions about the workshop, submissions, or sponsorship inquiries? Reach out to the organizing committee.</p>
 
     <div class="contact-grid">
       <div class="contact-card">
         <h3>General Inquiries</h3>
-        <a href="mailto:spf-llm-workshop@gmail.com">spf-llm-workshop@gmail.com</a>
-        <p>Questions about the workshop, logistics, or accessibility</p>
+        <a href="mailto:s.sushmita@northeastern.edu">s.sushmita@northeastern.edu</a>
+        <p>Contact the main organizer for questions about the workshop, logistics, or accessibility</p>
       </div>
       <div class="contact-card">
         <h3>Submission Questions</h3>
-        <a href="mailto:spf-llm-workshop@gmail.com">spf-llm-workshop@gmail.com</a>
-        <p>Questions about paper submission, formatting, or eligibility</p>
+        <a href="#">OpenReview Portal ↗</a>
+        <p>Submit your paper via OpenReview (link active when CFP opens, Nov 20, 2026 deadline)</p>
       </div>
       <div class="contact-card">
-        <h3>OpenReview</h3>
-        <a href="#">Submission Portal ↗</a>
-        <p>Submit your paper via OpenReview (link active when CFP opens)</p>
+        <h3>AAAI-27</h3>
+        <a href="https://aaai.org/conference/aaai/aaai-27/" target="_blank" rel="noopener">aaai.org/aaai-27 ↗</a>
+        <p>Conference registration, travel, and general information for AAAI 2027 in Montréal</p>
       </div>
       <div class="contact-card">
-        <h3>NeurIPS 2026</h3>
-        <a href="https://neurips.cc" target="_blank" rel="noopener">neurips.cc ↗</a>
-        <p>Conference registration, travel, and general information</p>
+        <h3>Workshop Website</h3>
+        <a href="https://spf-llm-2026.github.io/spf-llm-workshop.github.io/">spf-llm-workshop.github.io ↗</a>
+        <p>This page — bookmark for updates on speakers, schedule, and accepted papers</p>
       </div>
     </div>
   </div>
@@ -1027,7 +990,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <span class="footer-logo">SPF-LLM @ NeurIPS 2026</span>
+      <span class="footer-logo">SPF-LLM @ AAAI-27</span>
       <nav style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
         <a href="#overview">Overview</a>
         <a href="#dates">Dates</a>
@@ -1039,8 +1002,8 @@
       </nav>
     </div>
     <p>
-      Security &amp; Privacy Foundations for LLMs Workshop · NeurIPS 2026 ·
-      Contact: <a href="mailto:spf-llm-workshop@gmail.com">spf-llm-workshop@gmail.com</a>
+      Security &amp; Privacy Foundations for LLMs Workshop · AAAI-27 · Montréal, Canada · Feb 22–23, 2027 ·
+      Contact: <a href="mailto:s.sushmita@northeastern.edu">s.sushmita@northeastern.edu</a>
     </p>
   </div>
 </footer>
