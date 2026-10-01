@@ -567,6 +567,35 @@
     margin-top: 4px;
   }
 
+  /* FAQ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+  }
+  .faq-item h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+  }
+  .faq-item p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+  .faq-item a {
+    color: var(--neurips-purple);
+    font-weight: 500;
+  }
+
   /* FOOTER */
   footer {
     background: #0E0A2B;
@@ -620,6 +649,7 @@
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#speakers">Speakers</a></li>
       <li><a href="#organizers">Organizers</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -710,7 +740,7 @@
   <div class="section-inner">
     <p class="section-label">Key Deadlines</p>
     <h2 class="section-title">Important Dates</h2>
-    <p class="section-body">All deadlines are per the official AAAI-27 workshop calendar. Dates subject to change — check back for updates.</p>
+    <p class="section-body">All deadlines are per the official AAAI-27 workshop calendar and are Anywhere on Earth (UTC-12). Dates subject to change — check back for updates.</p>
     <table class="dates-table">
       <tr class="highlight">
         <td>Nov 20, 2026</td>
@@ -773,7 +803,7 @@
 
       <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
         <a href="#" class="btn btn-primary">Submit on OpenReview ↗</a>
-        <a href="#" class="btn btn-outline">AAAI 2027 Template ↗</a>
+        <a href="https://aaai.org/authorkit27/" target="_blank" rel="noopener" class="btn btn-outline">AAAI 2027 Template ↗</a>
       </div>
     </div>
   </div>
@@ -938,6 +968,56 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>How do I submit my paper? Can I submit outside of OpenReview?</h3>
+        <p>All submissions must go through our OpenReview venue page. We cannot accept submissions via email, direct upload, or any alternative route.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What should I do if my OpenReview profile activation is delayed?</h3>
+        <p>Profile verification is managed by OpenReview, not by us. New profiles or those using personal email addresses can take several days for manual moderation. <strong>Create and verify your OpenReview profile at least 2 weeks before the submission deadline.</strong> If you need a vouch, ask a co-author, supervisor, or colleague with an active institutional account — workshop organizers cannot vouch for authors due to conflict-of-interest rules.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I get a deadline extension if my profile is still pending activation?</h3>
+        <p>No. Organizers cannot grant individual extensions, open late submission windows, or bypass OpenReview verification. Submissions must be fully completed before the deadline (Anywhere on Earth, UTC-12).</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Which track should I submit to?</h3>
+        <p>Submit to <strong>Full Papers</strong> (4 pages + references) for completed work, which is considered for an oral presentation. Submit to <strong>Works in Progress / Extended Abstracts</strong> (1–2 pages) for early-stage ideas, preliminary results, or negative results, which are presented as a poster with a lightning talk.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Are appendices allowed, and do they count toward the page limit?</h3>
+        <p>Yes, appendices are allowed. The page limit applies to the main text only — references and appendices do not count. Reviewers are not obligated to read the appendix, so your main paper should be self-contained.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need to anonymize my submission?</h3>
+        <p>No. Reviewing is single-blind, so author names and affiliations may appear on the submission.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I submit work that is under review or published elsewhere?</h3>
+        <p>Yes. The workshop is <strong>non-archival</strong>, so accepted papers do not count as formal publications and can be submitted to other venues. However, work accepted at the AAAI-27 main track may not appear at the workshop.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I present remotely?</h3>
+        <p>No. Per AAAI-27 policy, virtual presentations are not permitted. Every accepted paper must be presented in person in Montréal by at least one of its authors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
@@ -982,6 +1062,7 @@
         <a href="#schedule">Schedule</a>
         <a href="#speakers">Speakers</a>
         <a href="#organizers">Organizers</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
